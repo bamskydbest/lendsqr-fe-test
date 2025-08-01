@@ -26,8 +26,12 @@ export const Sidebar = () => {
     <aside className="sidebar">
       <nav>
         <ul>
-          <li>
-            <FaBriefcase /> Switch Organization <IoMdArrowDropdown />
+          <li className="switch-org">
+            <FaBriefcase />
+            <span className="switch-text">
+              Switch Organization
+              <IoMdArrowDropdown />
+            </span>
           </li>
           <li>
             <FaHome /> Dashboard
@@ -41,7 +45,7 @@ export const Sidebar = () => {
             <FaUsers />
             Guarantors
           </li>
-          <li>
+          <li className="users">
             <HiUsers /> Users
           </li>
           <li>

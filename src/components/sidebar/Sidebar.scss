@@ -10,6 +10,28 @@
   ul {
     list-style: none;
     padding: 0;
+    .switch-org {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+
+      .switch-text {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        white-space: nowrap; // prevent wrapping
+      }
+    }
+
+    .users {
+      background-color: rgba($primary-color, 0.05);
+      border-left: 3px solid $primary-color;
+      margin-left: -1rem;
+      margin-right: -1rem;
+      padding: 0.75rem 2rem;
+      border-radius: 0;
+    }
 
     li {
       display: flex;
@@ -21,14 +43,11 @@
       border-radius: 6px;
       font-weight: 400;
 
-      //   .subject {
-      //     font-weight: 500;
-      //     font-size: 12px;
-      //     line-height: 100%;
-      //   }
-
       &:hover {
         background: #f5f6fa;
+        margin-left: -1rem;
+        margin-right: -1rem;
+        border-radius: 0;
       }
     }
   }

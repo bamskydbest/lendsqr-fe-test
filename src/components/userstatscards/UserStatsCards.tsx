@@ -1,16 +1,31 @@
-import {
-  FaUsers,
-  FaUserCheck,
-  FaPiggyBank,
-  FaHandHoldingUsd,
-} from "react-icons/fa";
+import users from "../../assets/np_users_1248631_000000 1.svg";
+import activeusers from "../../assets/icon(4).svg";
+import userswithloans from "../../assets/icon(5).svg";
+import userswithsavings from "../../assets/icon(6).svg";
+
 import "./UserStatsCards.scss";
 
 const cards = [
-  { title: "USERS", value: "2,453", icon: <FaUsers /> },
-  { title: "ACTIVE USERS", value: "2,453", icon: <FaUserCheck /> },
-  { title: "USERS WITH LOANS", value: "12,453", icon: <FaHandHoldingUsd /> },
-  { title: "USERS WITH SAVINGS", value: "102,453", icon: <FaPiggyBank /> },
+  {
+    title: "USERS",
+    value: "2,453",
+    icon: <img src={users} alt="users-icon" />,
+  },
+  {
+    title: "ACTIVE USERS",
+    value: "2,453",
+    icon: <img src={activeusers} alt="activeusers-icon" />,
+  },
+  {
+    title: "USERS WITH LOANS",
+    value: "12,453",
+    icon: <img src={userswithloans} alt="userswithloans-icon" />,
+  },
+  {
+    title: "USERS WITH SAVINGS",
+    value: "102,453",
+    icon: <img src={userswithsavings} alt="userswithsavings-icon" />,
+  },
 ];
 
 export const UserStatsCards = () => {
