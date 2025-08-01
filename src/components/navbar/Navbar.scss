@@ -1,0 +1,66 @@
+@use "../../styles/variables" as *;
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: $bg-light;
+  .search-wrapper {
+    position: relative;
+    margin-left: 6rem;
+
+    input {
+      width: 350px;
+      padding: 0.6rem 1rem;
+      padding-right: 2.5rem;
+      border-radius: 6px;
+      border: 1px solid $input-border;
+      font-size: 0.9rem;
+    }
+    input::placeholder {
+      color: $text-color;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 100%;
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 2.5rem;
+      background-color: $primary-color;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+      border-left: 1px solid $input-border;
+      pointer-events: none;
+    }
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+
+    img {
+      width: 32px;
+      border-radius: 50%;
+    }
+
+    span {
+      font-weight: 500;
+      color: $text-color;
+    }
+    a {
+      color: $text-color;
+      font-weight: 400;
+      line-height: 100%;
+    }
+  }
+}

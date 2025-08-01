@@ -1,0 +1,19 @@
+@use "../../styles/variables" as *;
+
+.dashboard-layout {
+  display: flex;
+
+  main {
+    flex: 1;
+    padding: 2rem;
+    background: #f5f6fa;
+    min-height: 100vh;
+  }
+}
+
+.dashboard-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $secondary-color;
+  margin-bottom: 1.5rem;
+}

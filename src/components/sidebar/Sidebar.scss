@@ -1,0 +1,35 @@
+@use "../../styles/variables" as *;
+
+.sidebar {
+  width: 283px;
+  background: $bg-light;
+  height: 100vh;
+  padding: 2rem 1rem;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.75rem 1rem;
+      color: $text-color;
+      cursor: pointer;
+      border-radius: 6px;
+      font-weight: 400;
+
+      //   .subject {
+      //     font-weight: 500;
+      //     font-size: 12px;
+      //     line-height: 100%;
+      //   }
+
+      &:hover {
+        background: #f5f6fa;
+      }
+    }
+  }
+}
