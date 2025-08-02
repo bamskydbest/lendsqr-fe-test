@@ -11,3 +11,7 @@ body {
   background-color: #fff;
   color: $text-color;
 }
+body,
+html {
+  overflow-x: hidden;
+}

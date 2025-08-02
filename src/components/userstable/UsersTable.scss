@@ -4,6 +4,73 @@
   padding: 2rem;
   min-height: 100vh;
   background: #f8f8f8;
+
+  .filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: $bg-light;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+
+    .filter-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex: 1 1 180px;
+
+      label {
+        font-size: 0.75rem;
+        color: $text-color;
+        font-weight: 600;
+      }
+
+      input,
+      select {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+        border: 1px solid $input-border;
+        border-radius: 5px;
+        color: $text-color;
+        background: #fff;
+      }
+    }
+
+    .filter-buttons {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-end;
+
+      button {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &.reset-btn {
+          background: #f1f1f1;
+          color: $text-color;
+
+          &:hover {
+            background: #e0e0e0;
+          }
+        }
+
+        &.filter-btn {
+          background: $secondary-color;
+          color: #fff;
+
+          &:hover {
+            background: darken($secondary-color, 10%);
+          }
+        }
+      }
+    }
+  }
 }
 
 .users-table-card {
@@ -27,10 +94,13 @@ td {
   font-size: 0.875rem;
   color: $text-color;
   border-bottom: 1px solid #eee;
-  white-space: nowrap; /* Prevent text from wrapping */
-  overflow: hidden; /* Hide any content that overflows */
-  text-overflow: ellipsis; /* Display an ellipsis for truncated text */
-  max-width: 150px; /* Set a max-width to ensure truncation */
+  white-space: nowrap;
+  // overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+.email {
+  overflow: hidden;
 }
 
 thead th {
@@ -49,6 +119,7 @@ thead th {
 
 tbody tr {
   transition: background-color 0.2s ease;
+
   &:hover {
     background-color: $primary-color;
   }
@@ -66,17 +137,20 @@ tbody tr {
     background: #f5f5f5;
     color: $text-color;
   }
+
   &.pending {
     background: #fffbea;
-    color: $yellow;
+    color: #e9b200;
   }
+
   &.active {
     background: #ecfdf5;
-    color: $green;
+    color: #39cd62;
   }
+
   &.blacklisted {
     background: #fee2e2;
-    color: $red;
+    color: #e4033b;
   }
 }
 
@@ -88,6 +162,7 @@ tbody tr {
   cursor: pointer;
   color: $text-color;
   opacity: 0.7;
+
   &:hover {
     opacity: 1;
   }
@@ -153,6 +228,39 @@ tbody tr {
     span {
       color: #545f7d;
       padding: 0 0.5rem;
+    }
+  }
+}
+.popup-wrapper {
+  position: relative;
+}
+
+.popup-menu {
+  position: absolute;
+  top: 100%;
+  right: -160%;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  width: 160px;
+  z-index: 9999;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+
+  button {
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 14px;
+    padding: 0.4rem;
+    color: #213f7d;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f2f2f2;
     }
   }
 }

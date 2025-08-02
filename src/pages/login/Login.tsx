@@ -12,9 +12,7 @@ export default function Login() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Simulate login (you can replace with real API)
     if (email && password) {
-      // Set a dummy token for auth check
       localStorage.setItem("token", "loggedin");
       navigate("/dashboard");
     } else {

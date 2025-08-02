@@ -1,5 +1,5 @@
 import "./UsersTable.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import filter from "../../assets/filter-results-button.svg";
 import ic from "../../assets/ic-more-vert-18px.svg";
 
@@ -13,17 +13,29 @@ type User = {
   status: string;
 };
 
-type UsersTableProps = {
+type Filters = {
+  organization: string;
+  username: string;
+  email: string;
+  phone: string;
+  dateJoined: string;
+  status: string;
+};
+
+type Props = {
+  filters: Filters;
   searchTerm: string;
 };
 
-export const UsersTable = ({ searchTerm }: UsersTableProps) => {
+export const UsersTable = ({ filters, searchTerm }: Props) => {
   const [users, setUsers] = useState<User[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const [openMenuUserId, setOpenMenuUserId] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -51,17 +63,44 @@ export const UsersTable = ({ searchTerm }: UsersTableProps) => {
   }, []);
 
   useEffect(() => {
-    const term = searchTerm.toLowerCase();
-    const filtered = users.filter(
-      (user) =>
-        user.organization.toLowerCase().includes(term) ||
-        user.username.toLowerCase().includes(term) ||
-        user.email.toLowerCase().includes(term) ||
-        user.phone.toLowerCase().includes(term)
-    );
+    const filtered = users.filter((user) => {
+      const matchesFilters =
+        (!filters.organization ||
+          user.organization
+            .toLowerCase()
+            .includes(filters.organization.toLowerCase())) &&
+        (!filters.username ||
+          user.username
+            .toLowerCase()
+            .includes(filters.username.toLowerCase())) &&
+        (!filters.email ||
+          user.email.toLowerCase().includes(filters.email.toLowerCase())) &&
+        (!filters.phone || user.phone.includes(filters.phone)) &&
+        (!filters.dateJoined || user.dateJoined === filters.dateJoined) &&
+        (!filters.status ||
+          user.status.toLowerCase() === filters.status.toLowerCase());
+
+      const matchesSearch =
+        user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.phone.toLowerCase().includes(searchTerm.toLowerCase());
+
+      return matchesFilters && (!searchTerm || matchesSearch);
+    });
     setFilteredUsers(filtered);
     setCurrentPage(1);
-  }, [searchTerm, users]);
+  }, [filters, searchTerm, users]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setOpenMenuUserId(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const indexOfLastUser = currentPage * rowsPerPage;
   const indexOfFirstUser = indexOfLastUser - rowsPerPage;
@@ -183,20 +222,41 @@ export const UsersTable = ({ searchTerm }: UsersTableProps) => {
           </thead>
           <tbody>
             {currentUsers.length > 0 ? (
-              currentUsers.map((u) => (
-                <tr key={u.id}>
-                  <td>{u.organization}</td>
-                  <td>{u.username}</td>
-                  <td>{u.email}</td>
-                  <td>{u.phone}</td>
-                  <td>{u.dateJoined}</td>
+              currentUsers.map((user) => (
+                <tr key={user.id}>
+                  <td>{user.organization}</td>
+                  <td>{user.username}</td>
+                  <td className="email">{user.email}</td>
+                  <td>{user.phone}</td>
+                  <td>{user.dateJoined}</td>
                   <td>
-                    <span className={`status ${u.status.toLowerCase()}`}>
-                      {u.status}
+                    <span className={`status ${user.status.toLowerCase()}`}>
+                      {user.status}
                     </span>
                   </td>
                   <td className="actions-cell">
-                    <img src={ic} alt="" />
+                    <div className="popup-wrapper" ref={menuRef}>
+                      <div className="menu-container">
+                        <div
+                          className="menu-icon"
+                          onClick={() =>
+                            setOpenMenuUserId(
+                              openMenuUserId === user.id ? null : user.id
+                            )
+                          }
+                        >
+                          <img src={ic} alt="menu-icon" />
+                        </div>
+                      </div>
+
+                      {openMenuUserId === user.id && (
+                        <div className="popup-menu">
+                          <button>View Details</button>
+                          <button>Blacklist User</button>
+                          <button>Activate User</button>
+                        </div>
+                      )}
+                    </div>
                   </td>
                 </tr>
               ))

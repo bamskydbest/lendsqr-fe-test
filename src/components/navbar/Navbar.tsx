@@ -1,17 +1,14 @@
-// src/components/navbar/Navbar.tsx
 import { FaRegBell, FaSearch } from "react-icons/fa";
 import avatar from "../../assets/avatar.svg";
 import logo from "../../assets/Group.svg";
 import "./Navbar.scss";
 import { IoMdArrowDropdown } from "react-icons/io";
 
-// ✅ Define props
 type NavbarProps = {
   searchTerm: string;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
 };
 
-// ✅ Use props in the function
 export const Navbar: React.FC<NavbarProps> = ({
   searchTerm,
   setSearchTerm,
