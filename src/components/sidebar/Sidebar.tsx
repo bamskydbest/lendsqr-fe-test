@@ -12,16 +12,20 @@ import {
   FaChartBar,
   FaSlidersH,
   FaClipboardList,
+  FaSignOutAlt,
 } from "react-icons/fa";
-
 import "./Sidebar.scss";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { HiUsers } from "react-icons/hi";
 import { TbMoneybag } from "react-icons/tb";
 import { FaHandHoldingDollar } from "react-icons/fa6";
 import { LuBadgePercent } from "react-icons/lu";
+import { useLocation } from "react-router-dom";
 
 export const Sidebar = () => {
+  const location = useLocation();
+  const isUserDetails = location.pathname.startsWith("/userdetails/");
+
   return (
     <aside className="sidebar">
       <nav>
@@ -37,11 +41,9 @@ export const Sidebar = () => {
             <FaHome /> Dashboard
           </li>
           <li className="subject">
-            {" "}
             <small>CUSTOMERS</small>
           </li>
           <li>
-            {" "}
             <FaUsers />
             Guarantors
           </li>
@@ -109,6 +111,12 @@ export const Sidebar = () => {
           <li>
             <FaClipboardList /> Audit Logs
           </li>
+
+          {isUserDetails && (
+            <li className="logout">
+              <FaSignOutAlt /> Logout
+            </li>
+          )}
         </ul>
       </nav>
     </aside>

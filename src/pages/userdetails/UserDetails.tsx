@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Sidebar } from "../../components/sidebar/Sidebar";
 import { Navbar } from "../../components/navbar/Navbar";
 import "./UserDetails.scss";
@@ -10,9 +10,22 @@ import pstar from "../../assets/np_star_1208084_000000 1.svg";
 const UserDetails = () => {
   const { id } = useParams<{ id: string }>();
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    console.log("User ID from URL:", id);
+    const fetchUser = async () => {
+      try {
+        const response = await fetch(
+          "https://gist.githubusercontent.com/bamskydbest/68bbff9adcd2fe64bd1f912391340c8d/raw/874e299834e4a226e0436f545a7b66d9610e4992/gistfile1.txt"
+        );
+        const data = await response.json();
+        setUser(data);
+      } catch (error) {
+        console.error("Failed to fetch user details", error);
+      }
+    };
+    if (id) fetchUser();
   }, [id]);
 
   return (
@@ -20,9 +33,10 @@ const UserDetails = () => {
       <Sidebar />
       <div className="main-content">
         <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <a href="/users/:id" className="back-link">
+        <a onClick={() => navigate(-1)} className="back-link">
           ← Back to Users
         </a>
+
         <div className="user-details-header">
           <h2>User Details</h2>
           <div className="actions">
@@ -38,8 +52,11 @@ const UserDetails = () => {
                 <img src={avatar} alt="avatar-icon" />
               </div>
               <div className="profile-name">
-                <h3>Grace Effiom</h3>
-                <p>LSQF587g90</p>
+                <h3>
+                  {user?.profile?.firstName || "Grace"}{" "}
+                  {user?.profile?.lastName || "Effiom"}
+                </h3>
+                <p>{user?.accountNumber || "LSQF587g90"}</p>
               </div>
             </div>
             <div className="check">
@@ -47,15 +64,16 @@ const UserDetails = () => {
                 <p>User's Tier</p>
                 <span>
                   <img src={pstar} alt="star-icon" />
-
                   <img src={nstar} alt="star-icon" />
-
                   <img src={nstar} alt="star-icon" />
                 </span>
               </div>
               <div className="bank-section">
-                <h3>₦200,000.00</h3>
-                <p>9912345678/Providus Bank</p>
+                <h3>{user?.accountBalance || "₦200,000.00"}</h3>
+                <p>
+                  {user?.accountNumber || "9912345678"}/
+                  {user?.bankName || "Providus Bank"}
+                </p>
               </div>
             </div>
           </div>
@@ -76,23 +94,26 @@ const UserDetails = () => {
             <div className="row">
               <div>
                 <p>Full Name</p>
-                <h5>Grace Effiom</h5>
+                <h5>
+                  {user?.profile?.firstName || "Grace"}{" "}
+                  {user?.profile?.lastName || "Effiom"}
+                </h5>
               </div>
               <div>
                 <p>Phone</p>
-                <h5>07068070922</h5>
+                <h5>{user?.phoneNumber || "07068070922"}</h5>
               </div>
               <div>
                 <p>Email</p>
-                <h5>grace@gmail.com</h5>
+                <h5>{user?.email || "grace@gmail.com"}</h5>
               </div>
               <div>
                 <p>BVN</p>
-                <h5>07068070922</h5>
+                <h5>{user?.profile?.bvn || "07068070922"}</h5>
               </div>
               <div>
                 <p>Gender</p>
-                <h5>Female</h5>
+                <h5>{user?.profile?.gender || "Female"}</h5>
               </div>
               <div>
                 <p>Marital Status</p>
@@ -104,7 +125,7 @@ const UserDetails = () => {
               </div>
               <div>
                 <p>Residence</p>
-                <h5>Parent's Apartment</h5>
+                <h5>{user?.profile?.address || "Parent's Apartment"}</h5>
               </div>
             </div>
           </section>
@@ -114,27 +135,30 @@ const UserDetails = () => {
             <div className="row">
               <div>
                 <p>Level of Education</p>
-                <h5>B.Sc</h5>
+                <h5>{user?.education?.level || "B.Sc"}</h5>
               </div>
               <div>
                 <p>Employment Status</p>
-                <h5>Employed</h5>
+                <h5>{user?.education?.employmentStatus || "Employed"}</h5>
               </div>
               <div>
                 <p>Monthly Income</p>
-                <h5>₦200,000.00 - ₦400,000.00</h5>
+                <h5>
+                  {user?.education?.monthlyIncome?.join(" - ") ||
+                    "₦200,000.00 - ₦400,000.00"}
+                </h5>
               </div>
               <div>
                 <p>Sector</p>
-                <h5>FinTech</h5>
+                <h5>{user?.education?.sector || "FinTech"}</h5>
               </div>
               <div>
                 <p>Office Email</p>
-                <h5>grace@lendsqr.com</h5>
+                <h5>{user?.education?.officeEmail || "grace@lendsqr.com"}</h5>
               </div>
               <div>
                 <p>Loan Repayment</p>
-                <h5>40,000</h5>
+                <h5>{user?.education?.loanRepayment || "40,000"}</h5>
               </div>
             </div>
           </section>
@@ -144,15 +168,15 @@ const UserDetails = () => {
             <div className="row">
               <div>
                 <p>Twitter</p>
-                <h5>@grace_effiom</h5>
+                <h5>{user?.socials?.twitter || "@grace_effiom"}</h5>
               </div>
               <div>
                 <p>Facebook</p>
-                <h5>Grace Effiom</h5>
+                <h5>{user?.socials?.facebook || "Grace Effiom"}</h5>
               </div>
               <div>
                 <p>Instagram</p>
-                <h5>@grace_effiom</h5>
+                <h5>{user?.socials?.instagram || "@grace_effiom"}</h5>
               </div>
             </div>
           </section>
@@ -162,19 +186,22 @@ const UserDetails = () => {
             <div className="row">
               <div>
                 <p>Full Name</p>
-                <h5>Debby Ogana</h5>
+                <h5>
+                  {user?.guarantor?.firstName || "Debby"}{" "}
+                  {user?.guarantor?.lastName || "Ogana"}
+                </h5>
               </div>
               <div>
                 <p>Phone</p>
-                <h5>07068070922</h5>
+                <h5>{user?.guarantor?.phoneNumber || "07068070922"}</h5>
               </div>
               <div>
                 <p>Email</p>
-                <h5>debby@gmail.com</h5>
+                <h5>{user?.guarantor?.email || "debby@gmail.com"}</h5>
               </div>
               <div>
                 <p>Relationship</p>
-                <h5>Sister</h5>
+                <h5>{user?.guarantor?.relationship || "Sister"}</h5>
               </div>
             </div>
           </section>

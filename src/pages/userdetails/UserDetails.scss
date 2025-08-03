@@ -3,6 +3,9 @@
 .user-details-container {
   display: flex;
   min-height: 100vh;
+  .switch-org {
+    margin-top: 3rem;
+  }
 
   .main-content {
     flex: 1;
@@ -20,6 +23,7 @@
   font-size: 0.875rem;
   text-decoration: none;
   margin-right: auto;
+  cursor: pointer;
 }
 
 .user-details-header {
@@ -155,7 +159,7 @@
 
       &.active-tab {
         color: #213f7d;
-        border-bottom: 2px solid #39cd62;
+        border-bottom: 2px solid $green;
         font-weight: 600;
       }
     }
@@ -201,9 +205,9 @@
     }
   }
 }
-.switch-org {
-  margin-top: 3rem;
-}
+// .switch-org {
+//   margin-top: 2rem;
+// }
 .navbar {
   width: 100%;
 }

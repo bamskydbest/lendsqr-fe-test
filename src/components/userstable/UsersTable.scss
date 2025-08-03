@@ -121,7 +121,7 @@ tbody tr {
   transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: $primary-color;
+    background-color: #f5f6fa;
   }
 }
 
@@ -265,11 +265,11 @@ tbody tr {
   }
 
   a {
-    text-decoration: none; // Remove underline from the link
-    display: block; // Make the link behave like a block-level element
+    text-decoration: none;
+    display: block;
   }
 
   a button {
-    width: 100%; // Make sure button fills the link area
+    width: 100%;
   }
 }

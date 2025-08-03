@@ -6,48 +6,68 @@
   height: 100vh;
   padding: 2rem 1rem;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
 
-  ul {
-    list-style: none;
-    padding: 0;
-    .switch-org {
+  nav {
+    flex: 1;
+
+    ul {
+      list-style: none;
+      padding: 0;
       display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 500;
+      flex-direction: column;
+      height: 100%;
 
-      .switch-text {
+      li {
         display: flex;
         align-items: center;
-        gap: 5px;
-        white-space: nowrap;
+        gap: 10px;
+        padding: 0.75rem 1rem;
+        color: $text-color;
+        cursor: pointer;
+        border-radius: 6px;
+        font-weight: 400;
+
+        &:hover {
+          background: #f5f6fa;
+          margin-left: -1rem;
+          margin-right: -1rem;
+          border-radius: 0;
+        }
       }
-    }
 
-    .users {
-      background-color: rgba($primary-color, 0.05);
-      border-left: 3px solid $primary-color;
-      margin-left: -1rem;
-      margin-right: -1rem;
-      padding: 0.75rem 2rem;
-      border-radius: 0;
-    }
+      .switch-org {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 500;
 
-    li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 0.75rem 1rem;
-      color: $text-color;
-      cursor: pointer;
-      border-radius: 6px;
-      font-weight: 400;
+        .switch-text {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          white-space: nowrap;
+        }
+      }
 
-      &:hover {
-        background: #f5f6fa;
+      .users {
+        background-color: rgba($primary-color, 0.05);
+        border-left: 3px solid $primary-color;
         margin-left: -1rem;
         margin-right: -1rem;
+        padding: 0.75rem 2rem;
         border-radius: 0;
+      }
+
+      .logout {
+        margin-top: auto;
+        color: $red;
+        font-weight: 500;
+
+        &:hover {
+          background-color: #fff5f5;
+        }
       }
     }
   }
