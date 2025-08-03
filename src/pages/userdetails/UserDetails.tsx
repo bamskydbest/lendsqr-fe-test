@@ -3,6 +3,9 @@ import { Sidebar } from "../../components/sidebar/Sidebar";
 import { Navbar } from "../../components/navbar/Navbar";
 import "./UserDetails.scss";
 import { useEffect, useState } from "react";
+import avatar from "../../assets/avatar(1).svg";
+import nstar from "../../assets/np_star_1171151_000000 1.svg";
+import pstar from "../../assets/np_star_1208084_000000 1.svg";
 
 const UserDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -17,10 +20,10 @@ const UserDetails = () => {
       <Sidebar />
       <div className="main-content">
         <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <a href="/users/:id" className="back-link">
+          ← Back to Users
+        </a>
         <div className="user-details-header">
-          <a href="/users" className="back-link">
-            ← Back to Users
-          </a>
           <h2>User Details</h2>
           <div className="actions">
             <button className="blacklist">Blacklist User</button>
@@ -31,19 +34,29 @@ const UserDetails = () => {
         <div className="user-card">
           <div className="card-header">
             <div className="profile-section">
-              <div className="avatar-placeholder">👤</div>
-              <div>
+              <div className="avatar-placeholder">
+                <img src={avatar} alt="avatar-icon" />
+              </div>
+              <div className="profile-name">
                 <h3>Grace Effiom</h3>
                 <p>LSQF587g90</p>
               </div>
             </div>
-            <div className="tier-section">
-              <p>User's Tier</p>
-              <span>⭐⭐</span>
-            </div>
-            <div className="bank-section">
-              <h3>₦200,000.00</h3>
-              <p>9912345678/Providus Bank</p>
+            <div className="check">
+              <div className="tier-section">
+                <p>User's Tier</p>
+                <span>
+                  <img src={pstar} alt="star-icon" />
+
+                  <img src={nstar} alt="star-icon" />
+
+                  <img src={nstar} alt="star-icon" />
+                </span>
+              </div>
+              <div className="bank-section">
+                <h3>₦200,000.00</h3>
+                <p>9912345678/Providus Bank</p>
+              </div>
             </div>
           </div>
 

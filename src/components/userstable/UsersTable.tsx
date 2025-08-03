@@ -2,6 +2,7 @@ import "./UsersTable.scss";
 import { useEffect, useRef, useState } from "react";
 import filter from "../../assets/filter-results-button.svg";
 import ic from "../../assets/ic-more-vert-18px.svg";
+import { Link } from "react-router-dom";
 
 type User = {
   id: number;
@@ -250,8 +251,17 @@ export const UsersTable = ({ filters, searchTerm }: Props) => {
                       </div>
 
                       {openMenuUserId === user.id && (
-                        <div className="popup-menu">
-                          <button>View Details</button>
+                        <div className="popup-menu" ref={menuRef}>
+                          <Link to={`/users/${user.id}`}>
+                            <button
+                              onClick={() => {
+                                setOpenMenuUserId(null); // Close menu on click
+                              }}
+                            >
+                              View Details
+                            </button>
+                          </Link>
+
                           <button>Blacklist User</button>
                           <button>Activate User</button>
                         </div>
