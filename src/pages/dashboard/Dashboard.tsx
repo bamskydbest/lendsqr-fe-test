@@ -1,4 +1,3 @@
-// src/pages/dashboard/Dashboard.tsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Sidebar } from "../../components/sidebar/Sidebar";
@@ -39,6 +38,7 @@ const Dashboard = () => {
               phone: "",
               status: "",
             }}
+            onFilterClick={handleFilterClick}
           />
         </main>
       </div>

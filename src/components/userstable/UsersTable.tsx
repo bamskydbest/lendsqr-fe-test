@@ -26,9 +26,10 @@ type Filters = {
 type Props = {
   filters: Filters;
   searchTerm: string;
+  onFilterClick: () => void;
 };
 
-export const UsersTable = ({ filters, searchTerm }: Props) => {
+export const UsersTable = ({ filters, searchTerm, onFilterClick }: Props) => {
   const [users, setUsers] = useState<User[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -183,37 +184,37 @@ export const UsersTable = ({ filters, searchTerm }: Props) => {
           <thead>
             <tr>
               <th>
-                <div className="header-content">
+                <div className="header-content" onClick={onFilterClick}>
                   <span>ORGANIZATION</span>
                   <img src={filter} alt="filter-icon" />
                 </div>
               </th>
               <th>
-                <div className="header-content">
+                <div className="header-content" onClick={onFilterClick}>
                   <span>USERNAME</span>
                   <img src={filter} alt="filter-icon" />
                 </div>
               </th>
               <th>
-                <div className="header-content">
+                <div className="header-content" onClick={onFilterClick}>
                   <span>EMAIL</span>
                   <img src={filter} alt="filter-icon" />
                 </div>
               </th>
               <th>
-                <div className="header-content">
+                <div className="header-content" onClick={onFilterClick}>
                   <span>PHONE NUMBER</span>
                   <img src={filter} alt="filter-icon" />
                 </div>
               </th>
               <th>
-                <div className="header-content">
+                <div className="header-content" onClick={onFilterClick}>
                   <span>DATE JOINED</span>
                   <img src={filter} alt="filter-icon" />
                 </div>
               </th>
               <th>
-                <div className="header-content">
+                <div className="header-content" onClick={onFilterClick}>
                   <span>STATUS</span>
                   <img src={filter} alt="filter-icon" />
                 </div>
@@ -255,7 +256,7 @@ export const UsersTable = ({ filters, searchTerm }: Props) => {
                           <Link to={`/users/${user.id}`}>
                             <button
                               onClick={() => {
-                                setOpenMenuUserId(null); // Close menu on click
+                                setOpenMenuUserId(null);
                               }}
                             >
                               View Details

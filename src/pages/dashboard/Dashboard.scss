@@ -41,3 +41,55 @@
     background-color: ($primary-color, 10%);
   }
 }
+@media (max-width: 1024px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+
+  main {
+    padding: 1.5rem;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 1rem;
+  }
+
+  .dashboard-title {
+    font-size: 1.1rem;
+  }
+
+  .filter-users-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dashboard-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .filter-users-button {
+    font-size: 13px;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+  }
+
+  main {
+    padding: 0.75rem;
+  }
+}

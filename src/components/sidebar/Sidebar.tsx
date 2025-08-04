@@ -18,13 +18,17 @@ import "./Sidebar.scss";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { HiUsers } from "react-icons/hi";
 import { TbMoneybag } from "react-icons/tb";
-import { FaHandHoldingDollar } from "react-icons/fa6";
 import { LuBadgePercent } from "react-icons/lu";
 import { useLocation } from "react-router-dom";
+import loan from "../../assets/Group 104.svg";
+import savings from "../../assets/np_bank_148501_000000 1.svg";
+import services from "../../assets/icon(7).svg";
+import transaction from "../../assets/galaxy 1.svg";
+import system from "../../assets/tire 1.svg";
 
 export const Sidebar = () => {
   const location = useLocation();
-  const isUserDetails = location.pathname.startsWith("/userdetails/");
+  const isUserDetails = /^\/users\/[a-zA-Z0-9-]{10,}$/.test(location.pathname);
 
   return (
     <aside className="sidebar">
@@ -60,7 +64,7 @@ export const Sidebar = () => {
             <FaPiggyBank /> Savings
           </li>
           <li>
-            <FaHandHoldingDollar /> Loan Request
+            <img src={loan} alt="loan-icon" /> Loan Request
           </li>
           <li>
             <FaUserCheck /> Whitelist
@@ -75,20 +79,20 @@ export const Sidebar = () => {
             <FaBriefcase /> Organization{" "}
           </li>
           <li>
-            <FaHandHoldingDollar />
+            <img src={loan} alt="loan-icon" />
             Loan Products
           </li>
           <li>
-            <FaBriefcase /> Savings Products
+            <img src={savings} alt="savings-icon" /> Savings Products
           </li>
           <li>
             <FaCoins /> Fees and Charges
           </li>
           <li>
-            <FaBriefcase /> Transactions
+            <img src={transaction} alt="transaction-icon" /> Transactions
           </li>
           <li>
-            <FaBriefcase /> Services
+            <img src={services} alt="services-icon" /> Services
           </li>
           <li>
             <FaUserCog /> Service Account
@@ -111,12 +115,20 @@ export const Sidebar = () => {
           <li>
             <FaClipboardList /> Audit Logs
           </li>
-
           {isUserDetails && (
-            <li className="logout">
-              <FaSignOutAlt /> Logout
+            <li>
+              <img src={system} alt="system-icon" /> Systems Messages
             </li>
           )}
+
+          <div className="down">
+            {isUserDetails && (
+              <li>
+                <FaSignOutAlt /> Logout
+              </li>
+            )}
+            {isUserDetails && <li>v1.2.0</li>}
+          </div>
         </ul>
       </nav>
     </aside>

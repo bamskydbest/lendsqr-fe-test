@@ -2,81 +2,360 @@
 
 .users-filter-screen {
   display: flex;
+  height: 100vh;
 
   .main-content {
     flex: 1;
-    padding: 2rem;
 
-    .page-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: $secondary-color;
-      margin: 1.5rem 0;
+    .stat-card {
+      margin: 2rem;
+    }
+    .stat-card h3 {
+      margin-bottom: 2rem;
     }
 
-    .filters-card {
-      background: $bg-light;
+    .navbar-wrapper {
+      width: 100%;
+    }
+
+    .content-wrapper {
       padding: 2rem;
-      border-radius: 10px;
-      margin-bottom: 2rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      width: 100%;
 
-      form {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
+      .page-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: $secondary-color;
+        margin: 1.5rem 0;
+      }
 
-        .filter-group {
-          display: flex;
-          flex-direction: column;
-          label {
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: $text-color;
-            margin-bottom: 0.25rem;
-          }
+      .filters-card {
+        background: $bg-light;
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
 
-          input,
-          select {
-            padding: 0.5rem;
-            border: 1px solid $input-border;
-            border-radius: 5px;
-            font-size: 0.875rem;
-          }
-        }
-
-        .filter-buttons {
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
+        form {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
           gap: 1rem;
-          grid-column: span 2;
 
-          .reset-btn,
-          .filter-btn {
-            padding: 0.5rem 1.2rem;
-            border-radius: 4px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
+          .filter-group {
+            display: flex;
+            flex-direction: column;
+
+            label {
+              font-size: 0.75rem;
+              font-weight: 500;
+              color: $text-color;
+              margin-bottom: 0.25rem;
+            }
+
+            input,
+            select {
+              padding: 0.5rem;
+              border: 1px solid $input-border;
+              border-radius: 5px;
+              font-size: 0.875rem;
+            }
           }
 
-          .reset-btn {
-            background: transparent;
-            color: $secondary-color;
-            border: 1px solid $secondary-color;
-          }
+          .filter-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1rem;
 
-          .filter-btn {
-            background: $primary-color;
-            color: white;
+            .reset-btn,
+            .filter-btn {
+              padding: 0.5rem 1.2rem;
+              border-radius: 4px;
+              font-size: 0.875rem;
+              font-weight: 500;
+              cursor: pointer;
+              border: none;
+            }
+
+            .reset-btn {
+              background: transparent;
+              color: $secondary-color;
+              border: 1px solid $secondary-color;
+            }
+
+            .filter-btn {
+              background: $primary-color;
+              color: white;
+            }
           }
         }
       }
     }
   }
+
+  .filters-popup {
+    position: absolute;
+    top: 27.4rem;
+    left: 37%;
+    transform: translateX(-50%);
+    background: $bg-light;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    z-index: 1000;
+    width: fit-content;
+    max-width: 90vw;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+
+      .filter-group {
+        display: flex;
+        flex-direction: column;
+
+        label {
+          font-size: 0.75rem;
+          font-weight: 500;
+          color: $text-color;
+          margin-bottom: 0.25rem;
+        }
+
+        input,
+        select {
+          padding: 0.5rem;
+          border: 1px solid $input-border;
+          border-radius: 5px;
+          font-size: 0.875rem;
+        }
+      }
+
+      .filter-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-start;
+        align-items: center;
+
+        .reset-btn,
+        .filter-btn {
+          padding: 0.5rem 1.2rem;
+          font-size: 0.875rem;
+          font-weight: 500;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+
+        .reset-btn {
+          background: transparent;
+          color: $secondary-color;
+          border: 1px solid $secondary-color;
+        }
+
+        .filter-btn {
+          background: $primary-color;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .switch-org {
+    margin-top: 3rem;
+  }
 }
-.switch-org {
-  margin-top: 3rem;
+@media (max-width: 1024px) {
+  .users-filter-screen {
+    flex-direction: column;
+  }
+
+  .main-content {
+    .stat-card {
+      margin: 1.5rem;
+    }
+
+    .content-wrapper {
+      padding: 1.5rem;
+    }
+
+    .filters-card form {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+  }
+
+  .filters-popup {
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    .stat-card {
+      margin: 1rem;
+    }
+
+    .content-wrapper {
+      padding: 1rem;
+    }
+
+    .filters-card form {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .filters-popup {
+    width: 95%;
+    min-width: unset;
+    padding: 1rem;
+    form {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    .stat-card {
+      margin: 0.5rem;
+    }
+
+    .content-wrapper {
+      padding: 0.75rem;
+    }
+
+    .filters-card {
+      padding: 1rem;
+
+      form {
+        gap: 1rem;
+      }
+
+      .filter-buttons {
+        flex-direction: column;
+        align-items: stretch;
+
+        .reset-btn,
+        .filter-btn {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .filters-popup {
+    padding: 0.75rem;
+    gap: 1rem;
+
+    .filter-buttons {
+      flex-direction: column;
+
+      .reset-btn,
+      .filter-btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+}
+@media (max-width: 1024px) {
+  .users-filter-screen {
+    flex-direction: column;
+  }
+
+  .main-content {
+    .stat-card {
+      margin: 1.5rem auto;
+      width: 90%;
+    }
+
+    .content-wrapper {
+      padding: 1.5rem;
+    }
+
+    .filters-popup {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: none;
+      width: 100%;
+      max-width: 100%;
+      background-color: #fff;
+      padding: 1.5rem;
+      z-index: 999;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+      form {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    .stat-card {
+      margin: 1rem auto;
+      width: 95%;
+    }
+
+    .content-wrapper {
+      padding: 1rem;
+    }
+
+    .filters-popup {
+      padding: 1rem;
+      form {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    .stat-card {
+      margin: 0.75rem auto;
+      width: 100%;
+    }
+
+    .content-wrapper {
+      padding: 0.75rem;
+    }
+
+    .filters-popup {
+      padding: 0.75rem;
+
+      form {
+        gap: 1rem;
+      }
+
+      .filter-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+
+        .reset-btn,
+        .filter-btn {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+  }
 }

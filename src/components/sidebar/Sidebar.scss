@@ -60,10 +60,9 @@
         border-radius: 0;
       }
 
-      .logout {
-        margin-top: auto;
-        color: $red;
-        font-weight: 500;
+      .down {
+        margin-top: 3rem;
+        border-top: 1px solid rgba($text-color, 0.1);
 
         &:hover {
           background-color: #fff5f5;

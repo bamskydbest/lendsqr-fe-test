@@ -3,9 +3,6 @@
 .user-details-container {
   display: flex;
   min-height: 100vh;
-  .switch-org {
-    margin-top: 3rem;
-  }
 
   .main-content {
     flex: 1;
@@ -137,6 +134,7 @@
         font-size: 0.875rem;
         color: $text-color;
         font-weight: 400;
+        margin-top: 0.5rem;
       }
     }
   }
@@ -176,6 +174,9 @@
   gap: 2rem;
 
   section {
+    border-bottom: 1px solid rgba($secondary-color, 0.15);
+    padding: 0 1rem 2rem;
+    margin: 0 1rem;
     h4 {
       color: #213f7d;
       margin-bottom: 1rem;
@@ -185,7 +186,6 @@
 
     .row {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 1.5rem;
 
       div {
@@ -203,11 +203,149 @@
         }
       }
     }
+
+    &.personal-info .row {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    &.education .row {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    &.socials .row {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    &.guarantors .row {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 }
-// .switch-org {
-//   margin-top: 2rem;
-// }
+.switch-org {
+  margin-top: 2rem;
+}
+
 .navbar {
   width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .user-details-container {
+    flex-direction: column;
+  }
+
+  .main-content {
+    padding: 1.5rem;
+  }
+
+  .user-card {
+    .card-header {
+      flex-direction: column;
+      align-items: flex-start;
+
+      .check {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .tier-section,
+      .bank-section {
+        width: 100%;
+        margin-top: 1rem;
+      }
+    }
+
+    .tabs {
+      flex-wrap: wrap;
+      gap: 0.75rem;
+
+      button {
+        flex: 1 1 45%;
+      }
+    }
+  }
+
+  .details-grid {
+    padding: 1rem;
+    section {
+      margin-bottom: 2rem;
+    }
+
+    section .row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .user-card {
+    padding: 1rem;
+
+    .tabs {
+      flex-direction: column;
+
+      button {
+        width: 100%;
+      }
+    }
+
+    .card-header {
+      .profile-name {
+        h3 {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  .details-grid {
+    section .row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .user-details-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+
+    .actions {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 1rem;
+  }
+
+  .user-card {
+    padding: 0.75rem;
+
+    .card-header {
+      gap: 1rem;
+    }
+  }
+
+  .details-grid {
+    padding: 0.75rem;
+    section .row {
+      gap: 1rem;
+    }
+  }
+
+  .back-link {
+    font-size: 0.75rem;
+  }
+
+  .user-details-header h2 {
+    font-size: 1rem;
+  }
 }

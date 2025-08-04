@@ -20,11 +20,14 @@ const UserDetails = () => {
           "https://gist.githubusercontent.com/bamskydbest/68bbff9adcd2fe64bd1f912391340c8d/raw/874e299834e4a226e0436f545a7b66d9610e4992/gistfile1.txt"
         );
         const data = await response.json();
-        setUser(data);
+
+        const matchedUser = data.find((u: any) => String(u.id) === id);
+        setUser(matchedUser);
       } catch (error) {
         console.error("Failed to fetch user details", error);
       }
     };
+
     if (id) fetchUser();
   }, [id]);
 
@@ -52,11 +55,9 @@ const UserDetails = () => {
                 <img src={avatar} alt="avatar-icon" />
               </div>
               <div className="profile-name">
-                <h3>
-                  {user?.profile?.firstName || "Grace"}{" "}
-                  {user?.profile?.lastName || "Effiom"}
-                </h3>
-                <p>{user?.accountNumber || "LSQF587g90"}</p>
+                <h3>{user?.username || "Grace Effiom"}</h3>
+
+                <h5>{user?.accountNumber || "LSQF587g90"}</h5>
               </div>
             </div>
             <div className="check">
@@ -89,19 +90,16 @@ const UserDetails = () => {
         </div>
 
         <div className="details-grid">
-          <section>
+          <section className="personal-info">
             <h4>Personal Information</h4>
             <div className="row">
               <div>
                 <p>Full Name</p>
-                <h5>
-                  {user?.profile?.firstName || "Grace"}{" "}
-                  {user?.profile?.lastName || "Effiom"}
-                </h5>
+                <h5>{user?.username || "Grace Effiom"}</h5>
               </div>
               <div>
                 <p>Phone</p>
-                <h5>{user?.phoneNumber || "07068070922"}</h5>
+                <h5>{user?.phone || "07068070922"}</h5>
               </div>
               <div>
                 <p>Email</p>
@@ -130,7 +128,7 @@ const UserDetails = () => {
             </div>
           </section>
 
-          <section>
+          <section className="education">
             <h4>Education and Employment</h4>
             <div className="row">
               <div>
@@ -163,7 +161,7 @@ const UserDetails = () => {
             </div>
           </section>
 
-          <section>
+          <section className="socials">
             <h4>Socials</h4>
             <div className="row">
               <div>
@@ -181,7 +179,7 @@ const UserDetails = () => {
             </div>
           </section>
 
-          <section>
+          <section className="guarantors">
             <h4>Guarantor</h4>
             <div className="row">
               <div>

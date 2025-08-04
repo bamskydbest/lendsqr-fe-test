@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = (e: React.FormEvent) => {
@@ -18,6 +19,10 @@ export default function Login() {
     } else {
       alert("Please enter email and password");
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
   };
 
   return (
@@ -41,14 +46,16 @@ export default function Login() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="form-group">
+            <div className="form-group password-group">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <span className="toggle">SHOW</span>
+              <span className="toggle" onClick={togglePasswordVisibility}>
+                {showPassword ? "HIDE" : "SHOW"}
+              </span>
             </div>
             <a href="#" className="forgot-password">
               Forgot Password?
