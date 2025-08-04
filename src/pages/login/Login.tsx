@@ -1,4 +1,4 @@
-import "./Login.scss";
+import "./login.scss";
 import logo from "../../assets/Group.svg";
 import illustration from "../../assets/pablo-sign-in 1.svg";
 import { useState } from "react";
